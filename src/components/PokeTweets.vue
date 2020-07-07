@@ -1,6 +1,10 @@
 <template>
   <div>
-
+    <H2>Find out which pokemon you are</H2>
+    <br>
+    <input v-model="twitterHandle" placeholder="Enter Twitter handle here">
+    <button @click="updateHandle">Who's that Pokemon?</button>
+    <p v-show="testingValue == true">twitterHandle = {{ twitterHandle }}</p>
   </div>
 </template>
 
@@ -11,12 +15,16 @@ export default {
   data: function() {
     return {
 
+      // Used while testing to show certain HTML elements
+      testingValue: true,
+
+      twitterHandle: "",
     }
   },
 
   methods: {
-    filler() {
-      return 'filler'
+    updateHandle() {
+      console.log("Starting the process");
     }
   }
 }
@@ -24,18 +32,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <PokeTweets>
+    <PokeTweets/>
   </div>
 </template>
 
