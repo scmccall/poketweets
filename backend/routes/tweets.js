@@ -5,34 +5,45 @@ let keys = require("../secretkeys");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+  let pokeurl = "https://pokeapi.co/api/v2/type/ice"
   let url = "https://api.twitter.com/1.1/statuses/user_timeline.json";
+
+  let params = {
+    screen_name: "sdaytime",
+  };
+
   let config = {
     headers: {
       Authorization: `Bearer ${keys.twitter.bearerToken}`
     }
   };
-  let params = {
-    screen_name: "sdaytime",
-  };
 
-  axios.get(url, params, config)
-    .then(res => {
-      console.log(res)
+  console.log(params)
+  console.log(config)
+
+  // axios.get(url, config, params)
+    axios.get(url, config, params)
+    .then(result => {
+      res.json(result.data);
+      // console.log(res.json(result.data));
     })
     .catch(err => {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else if (err.request) {
-        console.log(err.request);
+      if (err.res) {
+        // Request made and server responded
+        console.log(err.res.data);
+        console.log(err.res.status);
+        console.log(err.res.headers);
+      } else if (err.req) {
+        // The request was made but no response was received
+        console.log(err.req);
       } else {
-        console.log(`Error: ${error.message}`);
+        // Something happened in setting up the request that triggered an Error
+        console.log(`Error: ${err.message}`);
+        res.json(err.message);
       }
-    });
+    })
+    console.log(req.headers);
   
-
-
   /*
   request(options).pipe.res;
   res.send("hello");
