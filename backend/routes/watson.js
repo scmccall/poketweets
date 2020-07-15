@@ -25,36 +25,14 @@ const profileParams = {
 
 personalityInsights.profile(profileParams)
 .then(profile => {
-  console.log(JSON.stringify(profile, null, 2));
+  // console.log(profile);
+  // console.log(JSON.stringify(profile, null, 2));
+  console.log("Completed IBM Watson call successfully")
+  // res.json(profile);
 })
 .catch(err => {
   console.log(`Error: ${err}`);
-});
+  });
 
-
-/*
-router.get('/', function(req, res, next) {
-
-    axios.get(url)
-    .then(result => {
-      res.json(result.data);
-    })
-    .catch(err => {
-      if (err.res) {
-        // Request made and server responded
-        console.log(err.res.data);
-        console.log(err.res.status);
-        console.log(err.res.headers);
-      } else if (err.req) {
-        // The request was made but no response was received
-        console.log(err.req);
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.log(`Error: ${err.message}`);
-        res.json(err.message);
-      }
-    })
-});
-*/
 module.exports = router;
  

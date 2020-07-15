@@ -29,7 +29,7 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/twitter', tweetsRouter);
-app.use('watson', IBMRouter);
+app.use('/watson', IBMRouter);
 app.use('/pokemon', pokeRouter);
 
 // catch 404 and forward to error handler

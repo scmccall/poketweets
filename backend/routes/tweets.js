@@ -5,7 +5,6 @@ let keys = require("../secretkeys");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  let pokeurl = "https://pokeapi.co/api/v2/type/ice"
   let url = "https://api.twitter.com/1.1/statuses/user_timeline.json";
 
   let params = {

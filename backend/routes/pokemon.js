@@ -8,8 +8,8 @@ router.get('/', function(req, res, next) {
   let url = `https://pokeapi.co/api/v2/type/${type}`
 
     axios.get(url)
-    .then(result => {
-      res.json(result.data);
+    .then(typeData => {
+      res.json(typeData.data);
     })
     .catch(err => {
       if (err.res) {
@@ -29,4 +29,3 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
- 
