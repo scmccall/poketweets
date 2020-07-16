@@ -22,17 +22,15 @@ const profileParams = {
   consumptionPreferencesrawScores: true,
 
 }
-
-personalityInsights.profile(profileParams)
-.then(profile => {
-  // console.log(profile);
-  // console.log(JSON.stringify(profile, null, 2));
-  console.log("Completed IBM Watson call successfully")
-  // res.json(profile);
-})
-.catch(err => {
-  console.log(`Error: ${err}`);
-  });
+router.get('/', function(req, res, next) {
+  personalityInsights.profile(profileParams)
+  .then(profile => {
+    res.send((JSON.stringify(profile, null, 2)));
+  })
+  .catch(err => {
+    console.log(`Error: ${err}`);
+    });
+});
 
 module.exports = router;
  
