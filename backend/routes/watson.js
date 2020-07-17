@@ -25,7 +25,7 @@ const profileParams = {
 router.get('/', function(req, res, next) {
   personalityInsights.profile(profileParams)
   .then(profile => {
-    res.send((JSON.stringify(profile, null, 2)));
+    res.send((JSON.stringify(profile.result, null, 2)));
   })
   .catch(err => {
     console.log(`Error: ${err}`);
