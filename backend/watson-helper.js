@@ -572,37 +572,37 @@ const testData = {
   "warnings": []
 };
 
-// Returns the trait with the highest percentile score
+
 findHighestPercentileTrait = (data) => {
   let big5Categories = data.personality;
-  let highestTrait = null; // Will store the trait with the highest percentile
+  let currentHighestTrait = null; // Will store the trait with the highest percentile
 
   // Iterates over all the Big 5 personality categories
   for (i = 0; i < big5Categories.length; i++) {
 
     // Iterates over all traits within each Big 5 category
     for (j = 0; j < big5Categories[i].children.length; j++) {
-      let trait = big5Categories[i].children[j]
+      let newTrait = big5Categories[i].children[j]
 
       // Calls findGreaterOfTwoTraits() to return the trait with the highest score
-      highestTrait = findGreaterOfTwoTraits(highestTrait, trait);
+      currentHighestTrait = findHighestOfTwoTraits(currentHighestTrait, newTrait);
     }
   }
-  console.log(highestTrait);
-  // return highestTrait;
+  return currentHighestTrait;
 }
 
-findGreaterOfTwoTraits = (currentTrait, newTrait) => {
+findHighestOfTwoTraits = (currentHighestTrait, newTrait) => {
   // Base case for testing the first trait
-  if (currentTrait === null) {
+  if (currentHighestTrait === null) {
     return newTrait;
-  } else if (newTrait.percentile > currentTrait.percentile) {
+  } else if (newTrait.percentile > currentHighestTrait.percentile) {
     return newTrait;
   } else {
-    return currentTrait;
+    return currentHighestTrait;
   }
 };
 
 
 
-findHighestPercentileTrait(testData);
+let x = findHighestPercentileTrait(testData);
+console.log(x);
