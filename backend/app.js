@@ -4,6 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var mongoose = require('mongoose');
+
+// Set up db
+var mongoDB = 'mongodb://localhost/db';
+mongoose.connect(mongoDB,{ useNewUrlParser: true, useUnifiedTopology: true });
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // Import routes
 var indexRouter = require('./routes/index');
