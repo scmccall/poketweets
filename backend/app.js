@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 var mongoose = require('mongoose');
+const keys = require('./secretkeys');
 
 // Import routes
 var indexRouter = require('./routes/index');
@@ -14,6 +15,14 @@ let IBMRouter = require('./routes/watson')
 let pokeRouter = require('./routes/pokemon');
 
 var app = express();
+app.use(express.json());
+
+mongoose.connect(keys.database.dbURL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+app.listen(4500, () => { console.log('Server is running...') });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
