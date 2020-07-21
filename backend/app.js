@@ -22,7 +22,9 @@ mongoose.connect(keys.database.dbURL, {
   useUnifiedTopology: true
 });
 
-app.listen(4500, () => { console.log('Server is running...') });
+const  server = app.listen(4500, () => { 
+  console.log(`Server is running on ${server.address().port}`)
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

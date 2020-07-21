@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
 let axios = require('axios');
-let keys = require("../secretkeys");
+const keys = require("../secretkeys");
+const userModel = require("../models/user");
+const { findOneAndRemove } = require('../models/user');
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -15,10 +18,21 @@ router.get('/', function(req, res, next) {
       Authorization: `Bearer ${keys.twitter.bearerToken}`
     }
   };
-  
+
+
     axios(config)
     .then(result => {
+      let user = new userModel({
+        twitterScreenName: screen_name,
+        userTweetsJSON: result.data
+      });
+      user.save()
+      console.log("Data saved in DB");
       res.json(result.data);
+      // res.send(db);
+      // res.send(db);
+      // res.json(result.data)
+
     })
     .catch(err => {
       if (err.res) {
